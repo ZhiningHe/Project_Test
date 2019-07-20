@@ -8,10 +8,16 @@ import com.company.annotation.WarmUp;
 import java.util.Arrays;
 
 
-@Performance(count = 100,group = 3)
+@Performance(count = 2000,group = 10)
 public class Sort implements Case {
+
+    static int arr[] = {1,6,4,34,5,5,5,23,4,2,1,2,2,7,8,7,6,5,9,25,26,75,33};
+
+    /**
+     * 自己写的快速排序
+     */
     @MarkMethod @WarmUp(firstCount = 2)
-    public void Two(int[] arr){
+    public void Two(){
         if(arr.length <=1){
             return;
         }
@@ -49,4 +55,13 @@ public class Sort implements Case {
         array[j] = tmp;
     }
 
+    /**
+     * 系统的排序
+     */
+    @MarkMethod
+    @WarmUp(firstCount = 2)
+    public void systemSort(){
+        Arrays.sort(arr);
+    }
 }
+

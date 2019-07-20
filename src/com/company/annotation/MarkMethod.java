@@ -17,4 +17,5 @@ import java.lang.annotation.Target;
 //这个注解可以修饰类和方法
 @Target(ElementType.METHOD)
 public @interface MarkMethod {
+
 }

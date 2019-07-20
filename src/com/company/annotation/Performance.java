@@ -17,7 +17,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD,ElementType.TYPE})
 public @interface Performance {
     //每组几次
-    int count();
+    int count() ;
     //有几组
     int group();
 }
