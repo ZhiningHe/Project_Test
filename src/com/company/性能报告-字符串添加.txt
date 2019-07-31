@@ -1,0 +1,109 @@
+                                      
+分析：
+第一组平均时间：String是StringBuiler的4倍，每组100次。
+String的添加也不稳定，最快0.39ms，最慢2.44ms。
+StringBuiler添加较为稳定，最快0.028ms，最慢2.9ms，基本保持在0.05+-0.02区间。
+
+第二组平均时间：String足足是StringBuiler的120倍，每组1000次。
+String的添加也不稳定，最快14ms，最慢133ms。
+StringBuiler添加较为稳定，最快0.29ms，最慢1.40ms，基本保持在0.4+-0.2区间。
+
+两组都是执行10组，而通过两组的每组执行次数增大10倍，可以看到
+String的平均时间是从1.1到61ms，波动很大。
+StringBuiler的平均时间都是在0.5内，波动不大。
+
+所以频繁添加字符串的情况下，最好不要用String直接加。
+
+
+
+
+
+              		 //第一次~每组100次，10组。预热5次
+
+正在搜索需要测试的方法……
+
+ [com.company.cases.Sort 中 addOfString方法 ] 共测试10组，每组100次：
+预热……
+group 1: 耗时0.77379ms
+group 2: 耗时0.3969ms
+group 3: 耗时0.6677ms
+group 4: 耗时0.839ms
+group 5: 耗时0.9142ms
+group 6: 耗时1.1332ms
+group 7: 耗时1.3466ms
+group 8: 耗时1.92269ms
+group 9: 耗时2.4484ms
+group 10: 耗时0.8406ms
+
+性能报告：
+1. average：1.12832 ms
+2. 离散性低，稳定性高
+   variance：350634.1156
+-------------------------------------------------
+
+ [com.company.cases.Sort 中 appendOfBuilder方法 ] 共测试10组，每组100次：
+预热……
+group 1: 耗时2.9038ms
+group 2: 耗时0.1206ms
+group 3: 耗时0.0747ms
+group 4: 耗时0.1129ms
+group 5: 耗时0.0912ms
+group 6: 耗时0.04ms
+group 7: 耗时0.0307ms
+group 8: 耗时0.0289ms
+group 9: 耗时0.03079ms
+group 10: 耗时0.0576ms
+
+性能报告：
+1. average：0.34914999999999996 ms
+2. 离散性很高，稳定性较低
+   variance：726186.5545
+-------------------------------------------------
+
+
+
+                                           //第二次~每组1000次，10组。预热5次
+
+正在搜索需要测试的方法……
+
+ [com.company.cases.Sort 中 addOfString方法 ] 共测试10组，每组1000次：
+预热……
+group 1: 耗时30.9013ms
+group 2: 耗时50.1703ms
+group 3: 耗时92.482ms
+group 4: 耗时91.9885ms
+group 5: 耗时133.2201ms
+group 6: 耗时44.7468ms
+group 7: 耗时14.60649ms
+group 8: 耗时21.2559ms
+group 9: 耗时65.7488ms
+group 10: 耗时70.2083ms
+
+性能报告：
+1. average：61.53292 ms
+2. 离散性很高，稳定性较低
+   variance：1229102511.0876
+-------------------------------------------------
+
+ [com.company.cases.Sort 中 appendOfBuilder方法 ] 共测试10组，每组1000次：
+预热……
+group 1: 耗时1.4094ms
+group 2: 耗时0.4136ms
+group 3: 耗时0.347ms
+group 4: 耗时0.386ms
+group 5: 耗时0.4053ms
+group 6: 耗时0.3225ms
+group 7: 耗时0.2794ms
+group 8: 耗时0.2764ms
+group 9: 耗时0.4392ms
+group 10: 耗时0.29ms
+
+性能报告：
+1. average：0.4569 ms
+2. 离散性低，稳定性高
+   variance：103920.5100
+-------------------------------------------------
+
+
+
+

@@ -11,9 +11,7 @@ import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
+import java.util.*;
 
 
 /**
@@ -107,10 +105,10 @@ class CaseRunner{
             long end = System.nanoTime();
             runtime[i] = (double)(end-start);
             sum += runtime[i];
-            System.out.print("耗时"+(double)(end-start)+"ns\r\n");
+            System.out.print("耗时"+(double)(end-start)*0.000001+"ms\r\n");
         }
         System.out.println("\r\n"+"性能报告：");
-        System.out.println("1. average："+ df.format(sum/group)+" ns");
+        System.out.println("1. average："+ 0.000001*(sum/group)+" ms");
         System.out.println("   variance："+variance(runtime,sum/group));
         System.out.println("-------------------------------------------------");
 
@@ -122,16 +120,17 @@ class CaseRunner{
             variance += (p - aver) * (p - aver);
         }
         variance /=runtime.length;
-        variance *=0.001;
+        variance *=0.000001;
         if (variance<aver){
             System.out.println("2. 离散性低，稳定性高");
-        }else if(variance > 1000*aver){
+        }else if(variance > 2*aver){
             System.out.println("2. 离散性很高，稳定性较低");
         }else{
             System.out.println("2. 离散性较高，稳定性偏低");
         }
         return df.format(variance);
     }
+
 }
 
 
@@ -216,4 +215,5 @@ public class CaseClassLoader {
         }
         return false;
     }
+
 }
