@@ -111,7 +111,6 @@ class CaseRunner{
         System.out.println("1. average："+ 0.000001*(sum/group)+" ms");
         System.out.println("   variance："+variance(runtime,sum/group));
         System.out.println("-------------------------------------------------");
-
     }
     //计算方差
     private String variance(double[] runtime,double aver) {
@@ -130,7 +129,6 @@ class CaseRunner{
         }
         return df.format(variance);
     }
-
 }
 
 
