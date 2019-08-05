@@ -7,6 +7,7 @@ import com.company.annotation.Performance;
 import com.company.annotation.WarmUp;
 
 import java.util.Arrays;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 @Performance(count = 2000,group = 10)
@@ -20,6 +21,7 @@ public class StringTest extends CaseClassLoader implements Case {
     @Performance(count = 1000,group = 10)
     public void addOfString(){
         string += "add、";
+        ConcurrentHashMap
     }
 
     /**
