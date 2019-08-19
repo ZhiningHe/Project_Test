@@ -5,6 +5,7 @@ import com.company.annotation.MarkMethod;
 import com.company.annotation.Performance;
 import com.company.annotation.WarmUp;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -22,20 +23,18 @@ import java.util.*;
 class CaseRunner{
     static DecimalFormat df = new DecimalFormat("0.0000");
     private List<Case> list;
-    private File file;
     //默认参数
     private static final int DEFAULT_COUNT=100;
     private static final int DEFAULT_GROUP=3;
 
     public CaseRunner(List<?> caselist,File file) {
         this.list = (List<Case>) caselist;
-        this.file = file;
     }
 
 
     //获取注解参数
-    public void startTest() throws InvocationTargetException, IllegalAccessException, IOException {
-        System.out.println();
+    public void startTest(String filename) throws InvocationTargetException, IllegalAccessException, IOException {
+        FileWriter fileWriter = WriteFile.setFile(filename);
         System.out.println("正在搜索需要测试的方法……");
         for (Case cases : list){
             //---1.先设置为默认的参数
@@ -52,6 +51,8 @@ class CaseRunner{
             //寻找需要测试的方法
             Method[] methods = cases.getClass().getMethods();
             //寻找被Mark标记的方法
+
+
             for (Method method : methods){
                 //取得注解的MarkMethod
                 MarkMethod markMethod = method.getAnnotation(MarkMethod.class);
@@ -66,34 +67,31 @@ class CaseRunner{
                     group = per.group();
                 }
                 //开始执行方法进行测试
-                runcase(cases,method,count,group);
+                runcase(cases,method,count,group,fileWriter);
             }
+            fileWriter.close();
+            System.out.println("测试完成！");
         }
     }
     //真实测试类
-    private void runcase(Case cases, Method method,int count ,int group) throws InvocationTargetException, IllegalAccessException, IOException {
+    private void runcase(Case cases, Method method,int count ,int group,FileWriter file) throws InvocationTargetException, IllegalAccessException, IOException {
         final int DEFAULT_WARM = 10;
         int warm = DEFAULT_WARM;
-        //判断文件是不是存在
-        if (!file.exists()){
-            file.createNewFile();
-        }
-
         WarmUp warmUp = cases.getClass().getAnnotation(WarmUp.class);
         //如果设置预热，那就读取设置
         if (warmUp != null) {
             warm = warmUp.firstCount();
         }
 
-        System.out.println();
-        System.out.println(" ["+cases.getClass().getName()+" 中 "+method.getName()+"方法 ] "
+        file.write(" ["+cases.getClass().getName()+" 中 "+method.getName()+"方法 ] "
                 +"共测试"+group+"组，每组"+count+"次：");
+        file.write("\n");
         double sum = 0;
         double[] runtime = new double[group];
-        System.out.println("预热……");
+        System.out.println("方法"+method.getName()+"正在预热……");
         for(int i=0; i<group ;i++) {
             //预热
-            System.out.print("group "+(i+1)+": ");
+            file.write("group "+(i+1)+": ");
             for (int w =0 ; w<warm; w++ ){
                 method.invoke(cases);
             }
@@ -105,15 +103,17 @@ class CaseRunner{
             long end = System.nanoTime();
             runtime[i] = (double)(end-start);
             sum += runtime[i];
-            System.out.print("耗时"+(double)(end-start)*0.000001+"ms\r\n");
+            file.write("耗时"+(double)(end-start)*0.000001+"ms\r\n");
         }
-        System.out.println("\r\n"+"性能报告：");
-        System.out.println("1. average："+ 0.000001*(sum/group)+" ms");
-        System.out.println("   variance："+variance(runtime,sum/group));
-        System.out.println("-------------------------------------------------");
+        file.write("\r\n"+"性能报告：");
+        file.write("1. average："+ 0.000001*(sum/group)+" ms");
+        file.write("\n");
+        file.write("   variance："+variance(runtime,sum/group,file));
+        file.write("-------------------------------------------------");
+        file.write("\n");
     }
     //计算方差
-    private String variance(double[] runtime,double aver) {
+    private String variance(double[] runtime,double aver,FileWriter fileWriter) throws IOException {
         double variance=0.0;
         for (double p : runtime) {
             variance += (p - aver) * (p - aver);
@@ -121,11 +121,11 @@ class CaseRunner{
         variance /=runtime.length;
         variance *=0.000001;
         if (variance<aver){
-            System.out.println("2. 离散性低，稳定性高");
+            fileWriter.write("2. 离散性低，稳定性高");
         }else if(variance > 2*aver){
-            System.out.println("2. 离散性很高，稳定性较低");
+            fileWriter.write("2. 离散性很高，稳定性较低");
         }else{
-            System.out.println("2. 离散性较高，稳定性偏低");
+            fileWriter.write("2. 离散性较高，稳定性偏低");
         }
         return df.format(variance);
     }

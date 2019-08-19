@@ -11,7 +11,6 @@ public class Main {
         //测试类加载实例
         CaseClassLoader loader = new CaseClassLoader();
         //开始加载、测试
-        loader.load().startTest();
-
+        loader.load().startTest("String30_1000");
     }
 }

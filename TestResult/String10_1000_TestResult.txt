@@ -1,0 +1,28 @@
+ [com.company.cases.StringTest 中 addOfString方法 ] 共测试10组，每组1000次：
+group 1: 耗时23.9121ms
+group 2: 耗时40.5428ms
+group 3: 耗时30.638099999999998ms
+group 4: 耗时35.1984ms
+group 5: 耗时69.4371ms
+group 6: 耗时41.183299999999996ms
+group 7: 耗时14.4893ms
+group 8: 耗时21.592499999999998ms
+group 9: 耗时55.208999999999996ms
+group 10: 耗时76.46549999999999ms
+
+性能报告：1. average：40.86681 ms
+2. 离散性很高，稳定性较低   variance：378092339.3949-------------------------------------------------
+ [com.company.cases.StringTest 中 appendOfBuilder方法 ] 共测试10组，每组1000次：
+group 1: 耗时0.8639ms
+group 2: 耗时0.4521ms
+group 3: 耗时0.3907ms
+group 4: 耗时0.33959999999999996ms
+group 5: 耗时0.3782ms
+group 6: 耗时0.3377ms
+group 7: 耗时0.8347ms
+group 8: 耗时0.35369999999999996ms
+group 9: 耗时0.3785ms
+group 10: 耗时0.48879999999999996ms
+
+性能报告：1. average：0.48179 ms
+2. 离散性低，稳定性高   variance：35856.8229-------------------------------------------------

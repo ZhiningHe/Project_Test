@@ -6,5 +6,4 @@ package com.company;
  * 一个标识类
  */
 public interface Case {
-
 }

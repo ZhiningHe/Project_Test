@@ -6,11 +6,8 @@ import com.company.annotation.MarkMethod;
 import com.company.annotation.Performance;
 import com.company.annotation.WarmUp;
 
-import java.util.Arrays;
-import java.util.concurrent.ConcurrentHashMap;
 
 
-@Performance(count = 2000,group = 10)
 public class StringTest extends CaseClassLoader implements Case {
     static StringBuilder stringBuilder = new StringBuilder("StringBuiler-");
     static String string = "String-";
@@ -18,17 +15,16 @@ public class StringTest extends CaseClassLoader implements Case {
      * String
      */
     @MarkMethod @WarmUp(firstCount = 5)
-    @Performance(count = 1000,group = 10)
+    @Performance(count = 1000,group = 30)
     public void addOfString(){
         string += "add、";
-        ConcurrentHashMap
     }
 
     /**
      * StringBuilder
      */
     @MarkMethod
-    @Performance(count = 1000,group = 10)
+    @Performance(count = 1000,group = 30)
     @WarmUp(firstCount = 5)
     public void appendOfBuilder(){
         stringBuilder.append("append、");

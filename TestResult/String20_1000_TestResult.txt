@@ -1,0 +1,48 @@
+ [com.company.cases.StringTest 中 addOfString方法 ] 共测试20组，每组1000次：
+group 1: 耗时15.5251ms
+group 2: 耗时16.7993ms
+group 3: 耗时30.787399999999998ms
+group 4: 耗时42.5995ms
+group 5: 耗时64.4216ms
+group 6: 耗时30.3217ms
+group 7: 耗时16.8429ms
+group 8: 耗时24.1802ms
+group 9: 耗时28.285899999999998ms
+group 10: 耗时57.6534ms
+group 11: 耗时27.607599999999998ms
+group 12: 耗时34.9825ms
+group 13: 耗时32.437ms
+group 14: 耗时31.147499999999997ms
+group 15: 耗时101.66279999999999ms
+group 16: 耗时57.516ms
+group 17: 耗时42.725899999999996ms
+group 18: 耗时47.5317ms
+group 19: 耗时74.2073ms
+group 20: 耗时54.6626ms
+
+性能报告：1. average：41.594895 ms
+2. 离散性很高，稳定性较低   variance：448811244.2705-------------------------------------------------
+ [com.company.cases.StringTest 中 appendOfBuilder方法 ] 共测试20组，每组1000次：
+group 1: 耗时2.6418ms
+group 2: 耗时0.38639999999999997ms
+group 3: 耗时1.0217ms
+group 4: 耗时0.27449999999999997ms
+group 5: 耗时0.29369999999999996ms
+group 6: 耗时0.9175ms
+group 7: 耗时0.2784ms
+group 8: 耗时0.2994ms
+group 9: 耗时0.36719999999999997ms
+group 10: 耗时0.2248ms
+group 11: 耗时0.2233ms
+group 12: 耗时0.2162ms
+group 13: 耗时0.2226ms
+group 14: 耗时0.22979999999999998ms
+group 15: 耗时0.2254ms
+group 16: 耗时0.2171ms
+group 17: 耗时0.8160999999999999ms
+group 18: 耗时0.2938ms
+group 19: 耗时0.2342ms
+group 20: 耗时0.2059ms
+
+性能报告：1. average：0.47948999999999997 ms
+2. 离散性低，稳定性高   variance：303824.3839-------------------------------------------------
