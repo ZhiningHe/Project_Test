@@ -1,0 +1,45 @@
+ [com.company.cases.SortTest 中 MergeSort方法 ] 共测试10组，每组100次：
+group 1: 耗时321.8032ms
+group 2: 耗时268.6707ms
+group 3: 耗时307.0718ms
+group 4: 耗时209.27419999999998ms
+group 5: 耗时283.3977ms
+group 6: 耗时197.3457ms
+group 7: 耗时164.35649999999998ms
+group 8: 耗时191.8614ms
+group 9: 耗时292.0422ms
+group 10: 耗时203.0941ms
+
+性能报告：1. average：243.89175 ms
+2. 离散性很高，稳定性较低   variance：2861746614.0625-------------------------------------------------
+
+ [com.company.cases.SortTest 中 QuickSort方法 ] 共测试10组，每组100次：
+group 1: 耗时158.0377ms
+group 2: 耗时218.8979ms
+group 3: 耗时297.424ms
+group 4: 耗时204.48239999999998ms
+group 5: 耗时198.9778ms
+group 6: 耗时199.2789ms
+group 7: 耗时383.9826ms
+group 8: 耗时312.7141ms
+group 9: 耗时212.1385ms
+group 10: 耗时193.11509999999998ms
+
+性能报告：1. average：237.9049 ms
+2. 离散性很高，稳定性较低   variance：4401205384.1240-------------------------------------------------
+
+ [com.company.cases.SortTest 中 InserSort方法 ] 共测试10组，每组100次：
+group 1: 耗时1606.8111ms
+group 2: 耗时1400.4176ms
+group 3: 耗时1436.5456ms
+group 4: 耗时1376.8075999999999ms
+group 5: 耗时1368.0344ms
+group 6: 耗时1371.5764ms
+group 7: 耗时1365.7346ms
+group 8: 耗时1572.3379ms
+group 9: 耗时1548.5635ms
+group 10: 耗时1777.2836ms
+
+性能报告：1. average：1482.41123 ms
+2. 离散性很高，稳定性较低   variance：17384656386.4061-------------------------------------------------
+
