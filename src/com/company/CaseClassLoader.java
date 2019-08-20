@@ -111,6 +111,7 @@ class CaseRunner{
         file.write("   variance："+variance(runtime,sum/group,file));
         file.write("-------------------------------------------------");
         file.write("\n");
+        file.write("\n");
     }
     //计算方差
     private String variance(double[] runtime,double aver,FileWriter fileWriter) throws IOException {
